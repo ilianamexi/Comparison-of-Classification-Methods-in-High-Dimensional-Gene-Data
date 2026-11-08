@@ -1,0 +1,45 @@
+{
+  "args": {
+    "datasets": [
+      "leukemia",
+      "colon",
+      "prostate"
+    ],
+    "K": 100,
+    "d_prime": 100,
+    "folds": 5,
+    "repeats": 3,
+    "inner_folds": 5,
+    "epochs": 500,
+    "rf_trees": 500,
+    "seed": 42,
+    "skip_ablation": false,
+    "out": "results"
+  },
+  "datasets": {
+    "leukemia": {
+      "n_samples": 72,
+      "n_features": 7129,
+      "class_counts": {
+        "ALL": 47,
+        "AML": 25
+      }
+    },
+    "colon": {
+      "n_samples": 62,
+      "n_features": 2000,
+      "class_counts": {
+        "-1": 40,
+        "1": 22
+      }
+    },
+    "prostate": {
+      "n_samples": 102,
+      "n_features": 12600,
+      "class_counts": {
+        "1": 52,
+        "2": 50
+      }
+    }
+  }
+}
