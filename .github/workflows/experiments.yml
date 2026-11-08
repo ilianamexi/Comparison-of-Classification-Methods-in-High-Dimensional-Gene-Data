@@ -1,0 +1,25 @@
+name: experiments
+
+# Runs the full comparison on GitHub's servers (they can download the OpenML datasets)
+# and uploads the result tables as a build artifact.
+# Start it from the Actions tab ("Run workflow"), or push a commit whose message contains [run-experiments].
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  run:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[run-experiments]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: python run_experiments.py --out results
+      - uses: actions/upload-artifact@v4
+        with:
+          name: results
+          path: results/
